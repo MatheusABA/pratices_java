@@ -25,6 +25,7 @@ public class EstruturaDados {
         // Inicializando o array com valor já setados
         String[] arrayList = new String[]{"SP","DF","RJ","ES","PR","RS","MS","MT","AM","MA","PA","PE"};
         System.out.println("Array: " + Arrays.toString(arrayList));
+        // Percorre pelo tamanho do array
         for (int i = 0; i <= arrayList.length; i++) {
             if (arrayList[i].equals(valor)) {
                 System.out.println("Valor encontrado na posição " + i);
