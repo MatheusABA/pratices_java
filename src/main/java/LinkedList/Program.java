@@ -19,14 +19,20 @@ public class Program {
         System.out.println("Last node element: " + list.getUltimo().getValor());
 
         list.remove("RJ");
+        list.remove("SP");
+        list.remove("CE");
+        list.remove("MT");
+        list.remove("MS");
 
-        System.out.println("First node element: " + list.getPrimeiro().getValor());
-
-        System.out.println("Last node element: " + list.getUltimo().getValor());
 
 
-        System.out.println("Array");
+
+
         for(int i=0; i < list.getTamanho(); i++){
+            if (list.getTamanho() == 0) {
+                System.out.println("Linked List vazia");
+                break;
+            }
             System.out.println(list.getByIndex(i).getValor());
         }
 

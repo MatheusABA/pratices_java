@@ -15,7 +15,10 @@ public class LinkedList {
      * @return Valor retornado => 1ro Elemento
      */
     public Elemento getPrimeiro() {
+
         return primeiro;
+
+
     }
 
     public void setPrimeiro(Elemento primeiro) {
@@ -23,6 +26,7 @@ public class LinkedList {
     }
 
     public Elemento getUltimo() {
+
         return ultimo;
     }
 
