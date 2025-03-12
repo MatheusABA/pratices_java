@@ -22,7 +22,9 @@ public class EstruturaDados {
 //        linearSearch("S");
 //        vectorXlinkedlistPerformance();
 //        linearSearch();
-            binarySearch();
+//            binarySearch();
+//        bubbleSort();
+        insertionSort();
 
         // nao estatico
 //        EstruturaDados estrutura = new EstruturaDados();
@@ -215,9 +217,95 @@ public class EstruturaDados {
     }
 
 
+
+    // ----------------- ALGORITMOS DE ORDENAÇÃO ------------
+
+
+    // Bubble Sort -> O(n^2)
     public static void bubbleSort() {
+        int[] vector = new int[100000];
+
+        // preenchendo vetor
+        for(int i = 0; i < vector.length; i++) {
+            vector[i] = (int) (Math.random() * vector.length);
+        }
+
+        long inicio = System.currentTimeMillis();
+        long fim;
+        int aux;
+        // ordenando
+        // vai percorrer o vetor com 2 pointeiros(i,j), i sendo fixo e j percorrendo o vetor
+        // se valor na posição i for maior que o de j, invertem os valores e j passa para a próxima posição até terminar o vetor
+        // quando j percorrer o vetor, i pula uma posição para voltar a repetir os passos anteriores
+        for(int i = 0; i < vector.length; i++) {        // O(n)
+            for(int j = i + 1; j < vector.length; j++) {    // O(n)
+                if(vector[i] > vector[j]) {
+                    aux = vector[j];
+                    vector[j] = vector[i];
+                    vector[i] = aux;
+                }
+            }
+        }
+        fim = System.currentTimeMillis();
+        System.out.println("Tempo de ordenação do vetor: " + (fim - inicio) + " ms");
+
+        // Complexidade péssima -> O(n^2)
+//        for(int i = 0; i < vector.length; i++) {
+//            System.out.print(vector[i] + " ");
+//        }
+
+    }
+
+
+    // Insertion Sort
+    public static void insertionSort() {
+        int[] vector = new int[1000000];
+        // Ordenação será feita durante a inserção dos valores
+
+        for(int i = 0; i < vector.length; i++) {
+            vector[i] = (int) (Math.random() * vector.length);
+        }
+
+        int aux;
+        double inicio = System.currentTimeMillis();
+        double fim;
+        // Ordenando
+
+        for(int i = 1; i < vector.length; i++) {
+            aux = vector[i];    // pega a posição i dentro do vetor
+            int j = i - 1;
+            while(j >= 0 && vector[j] > aux) {
+                vector[j+1] = vector[j];
+                j--;
+            }
+            vector[j+1] = aux;
+        }
+
+//        for(int i = 0; i < vector.length; i++) {
+//            System.out.print(vector[i] + " ");
+//        }
+
+        fim = System.currentTimeMillis();
+        System.out.println("Tempo de ordenação do vetor: " + (fim - inicio)/1000 + " s");
+
+
+    }
+
+
+    public static void selectionSort() {
+        int[] vector = new int[1000];
+
+        // preenchndo vetor
+        for(int i = 0; i < vector.length; i++) {
+            vector[i] = (int) (Math.random() * vector.length);
+        }
+
+
+
 
     }
 
 }
+
+
 
