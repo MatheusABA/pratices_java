@@ -24,7 +24,10 @@ public class EstruturaDados {
 //        linearSearch();
 //            binarySearch();
 //        bubbleSort();
-        insertionSort();
+//        insertionSort();
+        selectionSort();
+
+
 
         // nao estatico
 //        EstruturaDados estrutura = new EstruturaDados();
@@ -292,6 +295,7 @@ public class EstruturaDados {
     }
 
 
+    // Selection Sort
     public static void selectionSort() {
         int[] vector = new int[1000];
 
@@ -300,6 +304,25 @@ public class EstruturaDados {
             vector[i] = (int) (Math.random() * vector.length);
         }
 
+        long inicio = System.currentTimeMillis();
+        long fim;
+        int posicao_menor, aux;
+        // Vai percorrer o vetor com i fixo e j pulando as posições até encontrar um menor que o valor no vetor[i]
+        // Quando encontrar, será a posicao menor que irá pular para a posição de i
+        for(int i = 0; i < vector.length; i++) {
+            posicao_menor = i;
+            for(int j = i + 1; j < vector.length; j++) {
+                if(vector[j] < vector[posicao_menor]) {
+                     posicao_menor = j;
+                }
+                aux = vector[posicao_menor];
+                vector[posicao_menor] = vector[i];
+                vector[i] = aux;
+            }
+        }
+
+        fim = System.currentTimeMillis();
+        System.out.println("Tempo de ordenação do vetor: " + (fim - inicio) + " ms");
 
 
 
