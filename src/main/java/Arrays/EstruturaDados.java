@@ -6,6 +6,7 @@ import LinkedList.IteratorLinkedList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class EstruturaDados {
 
@@ -19,7 +20,9 @@ public class EstruturaDados {
 //        matriz();
 //        array();
 //        linearSearch("S");
-        vectorXlinkedlistPerformance();
+//        vectorXlinkedlistPerformance();
+//        linearSearch();
+            binarySearch();
 
         // nao estatico
 //        EstruturaDados estrutura = new EstruturaDados();
@@ -35,7 +38,7 @@ public class EstruturaDados {
         String[] arrayList = new String[]{"SP","DF","RJ","ES","PR","RS","MS","MT","AM","MA","PA","PE"};
         System.out.println("Array: " + Arrays.toString(arrayList));
         // Percorre pelo tamanho do array
-        for (int i = 0; i <= arrayList.length; i++) {
+        for (int i = 0; i < arrayList.length; i++) {
             if (arrayList[i].equals(valor)) {
                 System.out.println("Valor encontrado na posição " + i);
                 break;
@@ -46,9 +49,36 @@ public class EstruturaDados {
         }
     }
 
+    public static void linearSearch() {
+        // Pior busca, complexidade O(n)
+        int[] vector = new int[10];
+
+        System.out.print("[ ");
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = (int) (Math.random() * 10);     // Casting passando (int) para transformar double -> int
+            System.out.print(vector[i]+ " ");
+        }
+        System.out.print("]");
+
+        System.out.println(" Qual numero vc deseja buscar?");
+        Scanner scanner = new Scanner(System.in);
+        int search = scanner.nextInt();
+
+        boolean founded = false;
+        int i;
+        for(i = 0; i < vector.length; i++) {
+            if (vector[i] == search) {
+                founded = true;
+                i = i;
+                break;
+            }
+        }
+        System.out.println((founded) ? "Valor encontrado "+i+" posição " : "Valor não encontrado");
 
 
-    // matriz inicial
+    }
+
+    // matriz
     public static void matriz() {
         int[][] matriz = new int[3][3];
 
@@ -88,7 +118,7 @@ public class EstruturaDados {
     public static void vectorXlinkedlistPerformance() {
         // Comparando performance LinkedList x Vetor
         LinkedList<Integer> list = new LinkedList<Integer>();
-        ArrayList<Integer> vector = new ArrayList<Integer>();
+        ArrayList<Integer> vector = new ArrayList<>();
 
         int lim = 10000000;
         long initialTime;
@@ -135,6 +165,59 @@ public class EstruturaDados {
     }
 
 
+    public static void binarySearch() {
+        // Quebra o vetor no meio comparando o valor buscado com o valor do meio, fazendo buscas à
+        // esquerda caso o valor for menor que o do meio e a direita caso contrário, voltando a quebrar em partes até achar
+        // Caso o fim inveta de posição com o início, significa que o valor não foi achado
+        // [ n1, n2, n3, n4, n5 ]
+        // inicio   meio      fim
+        // Complexidade O(log n) -> complexidade ideal
+
+
+        int[] vector = new int[1000000];
+
+        for(int i = 0; i < vector.length; i++) {
+            vector[i] = i*2;
+//            System.out.print(vector[i]+ " ");
+        }
+
+        System.out.println("Qual numero vc deseja buscar?");
+        Scanner scanner = new Scanner(System.in);
+        int search = scanner.nextInt();
+
+        boolean founded = false;
+        int inicio = 0;
+        int fim = vector.length - 1;
+        int meio;
+
+        int contador = 0;       // verificar quantas iterações foram feitas
+
+        while(inicio <= fim) {  // O loop irá existir até encontrar o valor ou inverter inicio e fim quando o valor não existir no array
+            meio = (int) (inicio + fim) / 2;    // casting para pegar a parte inteira
+            contador++;
+            if(vector[meio] == search) {
+                founded = true;
+                System.out.println("Valor encontrado na posição "+meio);
+                break;
+            } else if(vector[meio] < search) {  // Se o valor buscado for maior que o meio, o valor estará à direita do vetor
+                inicio = meio + 1;
+                meio = (int) (inicio + fim) / 2;
+            } else {    // Se o valor buscado for menor que o meio, estará à esquerda do vetor
+                fim = meio - 1;
+                meio = (int) (inicio + fim) / 2;
+            }
+        }
+        System.out.println("Quantidade de iterações "+contador);
+        if(!founded) System.out.println("Valor não encontrado");
+
+
+
+    }
+
+
+    public static void bubbleSort() {
+
+    }
 
 }
 
