@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.Iterator;
+
 public class LinkedList<TIPO> {
     private Elemento<TIPO> primeiro;
     private Elemento<TIPO> ultimo;
@@ -111,5 +113,9 @@ public class LinkedList<TIPO> {
         return atual;
     }
 
+
+    public IteratorLinkedList<TIPO> getIterator() {
+        return new IteratorLinkedList<TIPO>(this.primeiro);
+    }
 
 }

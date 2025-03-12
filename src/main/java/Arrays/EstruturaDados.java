@@ -1,6 +1,10 @@
 package Arrays;
 
-import java.lang.reflect.Array;
+
+import LinkedList.LinkedList;
+import LinkedList.IteratorLinkedList;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class EstruturaDados {
@@ -10,14 +14,19 @@ public class EstruturaDados {
         // metodo nao estatico -> precisa instanciar
 
         // Metodos a serem executados
+
         // estatico
 //        matriz();
 //        array();
-        linearSearch("S");
+//        linearSearch("S");
+        vectorXlinkedlistPerformance();
 
         // nao estatico
 //        EstruturaDados estrutura = new EstruturaDados();
 //        estrutura.array();
+
+
+
     }
 
     // busca linear
@@ -38,6 +47,7 @@ public class EstruturaDados {
     }
 
 
+
     // matriz inicial
     public static void matriz() {
         int[][] matriz = new int[3][3];
@@ -51,7 +61,7 @@ public class EstruturaDados {
     }
 
 
-    public void array() {
+    public static void array() {
         // Criando matriz 3x3 inicialmente
         int[][] array = new int[3][];
 
@@ -73,6 +83,58 @@ public class EstruturaDados {
             System.out.println();
         }
     }
+
+
+    public static void vectorXlinkedlistPerformance() {
+        // Comparando performance LinkedList x Vetor
+        LinkedList<Integer> list = new LinkedList<Integer>();
+        ArrayList<Integer> vector = new ArrayList<Integer>();
+
+        int lim = 10000000;
+        long initialTime;
+        long finalTime;
+
+        // ------------------- Performance vector
+
+        // add
+        initialTime = System.currentTimeMillis();
+
+        for(int i = 0; i < lim; i++) {
+            vector.add(i);
+        }
+        finalTime = System.currentTimeMillis();
+        System.out.println("Tempo de adição no vetor " + (finalTime - initialTime) + " ms");
+
+        // get
+
+        initialTime = System.currentTimeMillis();
+
+        for(int i = 0; i < vector.size(); i++) {
+            vector.get(i);
+        }
+        finalTime = System.currentTimeMillis();
+        System.out.println("Tempo de busca no vetor " + (finalTime - initialTime) + " ms");
+
+        // -------------------  Performance lista ligada
+        initialTime = System.currentTimeMillis();
+
+        // add
+        for(int i = 0; i < lim; i++) {
+            list.add(i);
+        }
+        finalTime = System.currentTimeMillis();
+        System.out.println("Tempo de adição na lista " + (finalTime - initialTime) + " ms");
+
+        // get with iterator
+        IteratorLinkedList<Integer> iterator = list.getIterator();
+        while(iterator.haveNextNode()) {
+            iterator.getProximo();
+        }
+        finalTime = System.currentTimeMillis();
+        System.out.println("Tempo de busca na lista " + (finalTime - initialTime) + " ms");
+    }
+
+
 
 }
 
