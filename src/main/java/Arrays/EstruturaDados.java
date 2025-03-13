@@ -4,6 +4,7 @@ package Arrays;
 import LinkedList.LinkedList;
 import LinkedList.IteratorLinkedList;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class EstruturaDados {
 //        bubbleSort();
 //        insertionSort();
 //        selectionSort();
-
+        heapSort();
 
 
         // nao estatico
@@ -36,6 +37,18 @@ public class EstruturaDados {
 
 
     }
+
+    // Metodo para gerar o vetor
+    public int[] newVector(int pos) {
+        int[] vector = new int[pos];
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = (int) Math.floor(Math.random() * vector.length);
+        }
+
+        return vector;
+
+    }
+
 
     // busca linear
     public static void linearSearch(String valor) {
@@ -330,7 +343,60 @@ public class EstruturaDados {
 
 
     public static void heapSort() {
+        // Criando vetor
+        int[] vector = new EstruturaDados().newVector(10);
 
+        System.out.println("Vetor desordenado");
+        // Display do vetor com n posições
+        for (int i : vector) {
+            System.out.print(i + " ");
+        }
+
+        // Aplicando heap sort
+        int tam = vector.length;
+
+        for(int i = tam / 2 - 1; i >= 0; i--) {
+            aplicaHeapSort(vector, tam, i);
+        }
+
+        System.out.println("\nQuase ordenado");
+        for(int i = 0; i < vector.length; i++) {
+            System.out.print(vector[i] + " ");
+        }
+
+        for(int i = tam-1; i > 0; i--) {
+            int aux = vector[0];
+            vector[0] = vector[i];
+            vector[i] = aux;
+
+            aplicaHeapSort(vector, i, 0);
+        }
+
+        System.out.println("\nVetor ordenado");
+        for(int i = 0; i < vector.length; i++) {
+            System.out.print(vector[i] + " ");
+        }
+
+    }
+
+    public static void aplicaHeapSort(int[] vector, int tam, int i) {
+        int raiz = i;
+        int esquerda = 2*i + 1;
+        int direita = 2*i + 2;
+        if (esquerda < tam && vector[esquerda] > vector[raiz]) {
+            raiz = esquerda;
+        }
+        if (direita < tam && vector[direita] > vector[raiz]) {
+            raiz = direita;
+        }
+
+        if (raiz != i) {
+            int aux = vector[i];
+            vector[i] = vector[raiz];
+            vector[raiz] = aux;
+
+            aplicaHeapSort(vector, tam, raiz);
+        }
     }
 }
 

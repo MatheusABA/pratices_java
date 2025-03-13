@@ -8,7 +8,7 @@ public class Recursividade {
 
 //        for (int i = 0; i < vetor.length; i++) {
 //            vetor[i] = (int) (Math.random() * vetor.length);
-////            System.out.print(vetor[i] + " ");
+//            System.out.print(vetor[i] + " ");
 //        }
 
 //        System.out.println("\nResultado: " + soma(0,0, vetor));
