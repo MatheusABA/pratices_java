@@ -25,7 +25,7 @@ public class EstruturaDados {
 //            binarySearch();
 //        bubbleSort();
 //        insertionSort();
-        selectionSort();
+//        selectionSort();
 
 
 
@@ -328,6 +328,10 @@ public class EstruturaDados {
 
     }
 
+
+    public static void heapSort() {
+
+    }
 }
 
 
